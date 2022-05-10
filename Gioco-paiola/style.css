@@ -1,0 +1,138 @@
+/* Aggiungi un margine alla pagina e imposta un carattere e un colore predefiniti */
+ 
+body {
+    margin: 30px;
+    font-family: "Georgia", serif;
+    line-height: 1.8em;
+    color: #333;
+  }
+   
+  /* Assegna alle intestazioni il proprio carattere */
+   
+  h1, h2, h3, h4 {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+  }
+   
+  /* Area del contenuto principale */
+   
+  #content {
+ 
+    text-align: center;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+   
+
+   
+  /* Slot per le posizioni finali delle carte */
+   
+  #cardSlots {
+    margin: 0 auto 1em auto;
+    background: none;
+    float: right;
+  }
+   
+  /* La pila iniziale di carte non ordinate*/
+   
+  #cardPile {
+    margin: 0 auto;
+    background: green;
+    float: left;
+  }
+   
+  #cardSlots, #cardPile {
+    width:30%;
+    height: 80%;
+    padding: .85em;
+    border: 2px solid #333;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    -moz-box-shadow: 0 0 .3em rgba(0, 0, 0, .8);
+    -webkit-box-shadow: 0 0 .3em rgba(0, 0, 0, .8);
+    box-shadow: 0 0 .3em rgba(0, 0, 0, .8);
+  }
+   
+  /* carte singole e slot */
+   
+  #cardSlots div, #cardPile div {
+    width: 25%;
+    height: 18%;
+    padding: .85em;
+    border: 2px solid #333;
+    -moz-border-radius: 100px;
+    -webkit-border-radius: 10px;
+    border-radius: 100px;
+    margin:0 auto;
+    margin-top:10px;
+    background: #fff;
+  }
+   
+  
+   
+  #cardSlots div.hovered {
+    background: #aaa;
+  }
+   
+  #cardSlots div {
+    border-style: dashed;
+  }
+   
+  #cardPile div {
+    background: #666;
+    color: #fff;
+    font-size: 1em;
+    text-shadow: 0 0 3px #000;
+    text-align: center;
+  }
+   
+  #cardPile div.ui-draggable-dragging {
+    -moz-box-shadow: 0 0 .5em rgba(0, 0, 0, .8);
+    -webkit-box-shadow: 0 0 .5em rgba(0, 0, 0, .8);
+    box-shadow: 0 0 .5em rgba(0, 0, 0, .8);
+  }
+   
+  /* Carte colorate singolarmente */
+   
+  #card1.correct { background: green; }
+  #card2.correct { background: green; }
+  #card3.correct { background: green; }
+  #card4.correct { background: green; }
+  #card5.correct { background: green; }
+  #card6.correct { background: green; }
+  #card7.correct { background: green; }
+  #card8.correct { background: green; }
+  #card9.correct { background: green; }
+  #card10.correct { background: green; }
+
+  #card1{background: #cd07ff !important;}
+  #card2{background: #dc3545 !important;}
+  #card3{background: #17a2b8 !important;}
+  #card4{background: #ff3b00 !important;}
+  #card5{background: #35dc42 !important;}
+
+  #cardPile {
+    background: none !important;
+  }
+  
+   
+  /* messaggio vittoria */
+  #successMessage {
+    position: absolute;
+    top:0px;
+    left: 0px;
+    width: 0;
+    height: 0;
+    z-index: 100;
+    background: #dfd;
+    border: 2px solid #333;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    -moz-box-shadow: .3em .3em .5em rgba(0, 0, 0, .8);
+    -webkit-box-shadow: .3em .3em .5em rgba(0, 0, 0, .8);
+    box-shadow: .3em .3em .5em rgba(0, 0, 0, .8);
+    padding: 10px;
+    min-height:300px;
+  }

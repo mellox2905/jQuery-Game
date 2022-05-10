@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+<title> jQuery Drag-and-Drop Quiz</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
+<script type="text/javascript">
+
+var correctCards = 0;
+$( init );function init() {
+
+  // Nascondi il messaggio di successo
+  $('#successMessage').hide();
+  $('#successMessage').css( {
+    left: '580px',
+    top: '250px',
+    width: 0,
+    height: 0
+  } );
+
+  // Reimposta il gioco
+  correctCards = 0;
+  $('#cardPile').html( '' );
+  $('#cardSlots').html( '' );
+
+  // Crea il mucchio di carte mescolate
+  var numbers = [ 2, 4, 1, 3, 5];
+  var terms = ['Rivoluzione Francese', 'Scoperta America', 'Muro di Berlino', 'Fine seconda guerra mondiale', 'Reppublica Italiana'];
+
+ 
+
+  for ( var i=0; i<5; i++ ) {
+    $('<div>' + terms[i] + '</div>').data( 'number', numbers[i] ).attr( 'id', 'card'+numbers[i] ).appendTo( '#cardPile' ).draggable( {
+      
+      stack: '#cardPile div',
+      cursor: 'move',
+      revert: true
+    } );
+  }
+
+  // Crea gli slot per le carte
+  var words = [ '1989', '1789', '1945', '1492', '1946'];
+  for ( var i=1; i<=5; i++ ) {
+    $('<div>' + words[i-1] + '</div>').data( 'number', i ).appendTo( '#cardSlots' ).droppable( {
+      accept: '#cardPile div',
+      hoverClass: 'hovered',
+      drop: handleCardDrop
+    } );
+  }
+
+}
+
+function handleCardDrop( event, ui ) {
+  var slotNumber = $(this).data( 'number' );
+  var cardNumber = ui.draggable.data( 'number' );
+
+  // Se la scheda è stata inserita nello slot corretto,
+  // cambia il colore della carta, posizionala direttamente
+  // sopra lo slot e impedirne il trascinamento
+  // ancora
+
+  if ( slotNumber == cardNumber ) {
+    ui.draggable.addClass( 'correct' );
+    ui.draggable.draggable( 'disable' );
+    $(this).droppable( 'disable' );
+    ui.draggable.position( { of: $(this), my: 'left top', at: 'left top' } );
+    ui.draggable.draggable( 'option', 'revert', false );
+    correctCards++;
+  } 
+ 
+  // Se tutte le carte sono state posizionate correttamente, mostra un messaggio
+  // e reimposta le carte per un altro tentativo
+
+  if ( correctCards == 5 ) {
+    $('#successMessage').show();
+    $('#successMessage').animate( {
+      left: '5%',
+      top: '0%',
+      width: '80%',
+      height: '15%',
+      opacity: 1
+    } );
+   
+  }
+
+
+}
+
+</script>
+
+</head>
+<body>
+
+    <h1 style="text-align: center;">Quiz di storia</h1>
+
+    <br>
+    <br>
+<div id="content">
+
+  <div id="cardPile"> </div>
+  <div id="cardSlots"> </div>
+
+  <div id="successMessage" style="height:max-content !important">
+ <h1 style="text-align: center;">Complimenti hai vinto!</h1>
+  <img src="vittoria.jpg" style="width:100%;max-width:200px;height:auto">
+
+  </div>
+
+</div>
+
+
+
+
+</body>
+</html>
